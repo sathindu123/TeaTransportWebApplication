@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Advance Payment | MP Tea</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root{
+      --brand-1:#667eea; --brand-2:#764ba2; --brand-3:#20c997; --brand-4:#28a745;
+    }
+    body{
+      font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      background: url("Assicts/img/240_F_1076800628_QX6dUhoHDZ6elCWbLqh3v5wEf9qzn0E8.jpg") center/cover no-repeat;
+      min-height: 100vh;
+      color:#233;
+    }
+    .page-wrap{
+      padding: clamp(16px, 3vw, 32px);
+    }
+    .app-card{
+      background:#fff;
+      border:0;
+      border-radius: 18px;
+      box-shadow: 0 12px 35px rgba(0,0,0,.15);
+      overflow: hidden;
+    }
+    .app-header{
+      background: linear-gradient(120deg,var(--brand-1),var(--brand-2));
+      color:#fff;
+      padding: 18px 22px;
+    }
+    .app-header h1{
+      font-size: clamp(18px, 2.4vw, 22px);
+      margin:0;
+      display:flex; gap:10px; align-items:center;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 12px; background:rgba(255,255,255,.16);
+      border-radius: 999px; font-size:12px;
+    }
+    .section-title{
+      font-weight:700; font-size:14px; color:#6b7280; letter-spacing:.02em; text-transform:uppercase;
+    }
+    .summary-card{
+      background: #f9fafb;
+      border:1px dashed #e5e7eb;
+      border-radius:14px;
+      padding:16px;
+    }
+    .badge-soft{
+      background:#eef2ff; color:#4f46e5; border-radius:999px; padding:6px 10px; font-weight:600;
+    }
+    .nav-pills .nav-link{
+      border-radius: 999px;
+      font-weight:600;
+    }
+    .nav-pills .nav-link.active{
+      background: linear-gradient(120deg,var(--brand-3),var(--brand-4));
+    }
+    .card-face{
+      background: radial-gradient(1200px 400px at -10% -20%, rgba(255,255,255,.15), transparent),
+      linear-gradient(140deg,#232a3b,#2f3b57);
+      color:#fff;
+      border-radius:16px;
+      padding:18px;
+      min-height:160px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+    }
+    .cc-chip{ width:40px; height:28px; border-radius:6px; background:linear-gradient(45deg,#f7ce68,#fbab7e); }
+    .cc-num{ letter-spacing:2px; font-size:18px; font-weight:600; }
+    .cc-meta{ font-size:12px; text-transform:uppercase; color:#c7d2fe; }
+    .form-control:focus{ box-shadow:0 0 0 .2rem rgba(102,126,234,.2); border-color:#a5b4fc; }
+    .btn-pay{
+      background: linear-gradient(120deg,var(--brand-1),var(--brand-2));
+      border:0; font-weight:700;
+    }
+    .btn-pay:hover{ filter: brightness(1.05); }
+    .divider{
+      height:1px; background:#eef2ff; margin:14px 0;
+    }
+    .table-clean th, .table-clean td{ border:0 !important; padding:.35rem 0; }
+    .qr{
+      width:84px; height:84px; border-radius:10px; background:
+            radial-gradient(circle at 25% 25%, #1f2937 25%, transparent 26%) 0 0/18px 18px,
+            radial-gradient(circle at 75% 25%, #1f2937 25%, transparent 26%) 0 0/18px 18px,
+            radial-gradient(circle at 25% 75%, #1f2937 25%, transparent 26%) 0 0/18px 18px,
+            radial-gradient(circle at 75% 75%, #1f2937 25%, transparent 26%) 0 0/18px 18px,
+            #fff;
+      border:1px solid #e5e7eb;
+    }
+    .small-hint{ font-size:12px; color:#6b7280; }
+  </style>
+</head>
+<body>
+<div class="page-wrap container">
+  <div class="row justify-content-center">
+    <div class="col-xl-9">
+      <div class="app-card">
+        <!-- Header -->
+        <div class="app-header d-flex justify-content-between align-items-center">
+          <h1><i class="bi bi-cash-coin"></i> Advance Payment <span class="pill"><i class="bi bi-shield-check"></i> Secure</span></h1>
+          <span class="badge-soft">LKR</span>
+        </div>
+
+        <div class="p-3 p-md-4 p-lg-5">
+          <div class="row g-4">
+            <!-- Left: form -->
+            <div class="col-lg-7">
+              <div class="mb-3">
+                <div class="section-title mb-2">Customer Details (වාහන/ලාභියා)</div>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">Full name</label>
+                    <input type="text" class="form-control" id="custName" placeholder="e.g. Supun Perera" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Phone</label>
+                    <input type="tel" class="form-control" id="custPhone" placeholder="07XXXXXXXX" maxlength="10" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">NIC / ID (ඉන්ධන බිල්/තහවුරු)</label>
+                    <input type="text" class="form-control" id="custNic" placeholder="200012345678">
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Vehicle No. (ඔප්ෂනල්)</label>
+                    <input type="text" class="form-control" id="vehicle" placeholder="ABC-1234">
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Advance Amount (LKR)</label>
+                    <input type="number" min="0" step="0.01" class="form-control" id="amount" placeholder="5000.00" required>
+                    <div class="small-hint mt-1">ඔයා ගන්න advance මුදල (LKR). Taxes/fees auto-calc වෙනවා.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="divider"></div>
+
+              <!-- Payment method tabs -->
+              <div class="mb-2 section-title">Payment Method</div>
+              <ul class="nav nav-pills mb-3" id="payTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="cash-tab" data-bs-toggle="pill" data-bs-target="#cash" type="button" role="tab"><i class="bi bi-cash"></i> Cash</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="card-tab" data-bs-toggle="pill" data-bs-target="#card" type="button" role="tab"><i class="bi bi-credit-card-2-front"></i> Card</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="bank-tab" data-bs-toggle="pill" data-bs-target="#bank" type="button" role="tab"><i class="bi bi-building"></i> Bank Transfer</button>
+                </li>
+              </ul>
+
+              <div class="tab-content">
+                <!-- Cash -->
+                <div class="tab-pane fade show active" id="cash" role="tabpanel">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Amount Received</label>
+                      <input type="number" class="form-control" id="cashReceived" placeholder="0.00">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Change (auto)</label>
+                      <input type="text" class="form-control" id="cashChange" placeholder="0.00" readonly>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card -->
+                <div class="tab-pane fade" id="card" role="tabpanel">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <div class="card-face d-flex flex-column gap-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div class="cc-chip"></div>
+                          <div class="cc-meta"><i class="bi bi-shield-lock"></i> 3D Secure</div>
+                        </div>
+                        <div class="cc-num" id="ccPreview">•••• •••• •••• ••••</div>
+                        <div class="d-flex justify-content-between">
+                          <div class="cc-meta">Card Holder<br><span id="ccNamePreview">Your Name</span></div>
+                          <div class="cc-meta">Expires<br><span id="ccExpPreview">MM/YY</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Card Number</label>
+                      <input type="text" inputmode="numeric" maxlength="19" class="form-control" id="ccNumber" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Card Holder</label>
+                      <input type="text" class="form-control" id="ccName" placeholder="Name on card">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">Expiry</label>
+                      <input type="text" maxlength="5" class="form-control" id="ccExp" placeholder="MM/YY">
+                    </div>
+                    <div class="col-md-3">
+                      <label class="form-label">CVV</label>
+                      <input type="password" maxlength="4" class="form-control" id="ccCvv" placeholder="***">
+                    </div>
+                  </div>
+                  <div class="small-hint mt-2"><i class="bi bi-lock-fill"></i> Card data is simulated on frontend only—connect gateway (Stripe/PayHere/PayPal) in backend.</div>
+                </div>
+
+                <!-- Bank -->
+                <div class="tab-pane fade" id="bank" role="tabpanel">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label">Bank</label>
+                      <select class="form-select" id="bankName">
+                        <option selected disabled>Select bank</option>
+                        <option value="BOC">BOC</option>
+                        <option value="People's Bank">People's Bank</option>
+                        <option value="HNB">HNB</option>
+                        <option value="Sampath">Sampath</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label">Reference No.</label>
+                      <input type="text" class="form-control" id="bankRef" placeholder="Slip / TXN ID">
+                    </div>
+                    <div class="col-12">
+                      <label class="form-label">Notes</label>
+                      <textarea class="form-control" id="bankNote" rows="2" placeholder="Any note..."></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 d-grid d-sm-flex gap-2">
+                <button class="btn btn-pay btn-lg text-white" id="btnPay"><i class="bi bi-check2-circle me-1"></i> Pay Advance</button>
+                <button class="btn btn-outline-secondary btn-lg" id="btnReset"><i class="bi bi-arrow-counterclockwise me-1"></i> Reset</button>
+              </div>
+            </div>
+
+            <!-- Right: summary -->
+            <div class="col-lg-5">
+              <div class="summary-card">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0">Payment Summary</h5>
+                  <span class="badge rounded-pill text-bg-success" id="statusBadge">Pending</span>
+                </div>
+                <div class="divider"></div>
+                <table class="table table-clean mb-2">
+                  <tbody>
+                  <tr><th scope="row">Customer</th><td class="text-end" id="smName">-</td></tr>
+                  <tr><th scope="row">Phone</th><td class="text-end" id="smPhone">-</td></tr>
+                  <tr><th scope="row">Method</th><td class="text-end" id="smMethod">Cash</td></tr>
+                  <tr><th scope="row">Advance</th><td class="text-end">LKR <span id="smAmount">0.00</span></td></tr>
+                  <tr><th scope="row">Service Fee</th><td class="text-end">LKR <span id="smFee">0.00</span></td></tr>
+                  <tr class="fw-bold"><th scope="row">Total</th><td class="text-end">LKR <span id="smTotal">0.00</span></td></tr>
+                  </tbody>
+                </table>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="qr"></div>
+                  <div>
+                    <div class="small text-muted">Invoice ID</div>
+                    <div class="fw-bold" id="invId">INV-00001</div>
+                    <div class="small text-muted" id="invDate"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-3 small-hint">
+                * Cash change auto-calc. Card වල service fee 1.5% ලෙස mock කරන්නම් (change as needed).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success Modal -->
+      <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header border-0">
+              <h5 class="modal-title"><i class="bi bi-patch-check-fill text-success me-2"></i> Payment Successful</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Advance accepted. Receipt generated for <strong id="rcptName">-</strong> (<span id="rcptMethod">-</span>).
+              <div class="mt-2">Total Paid: <strong>LKR <span id="rcptTotal">0.00</span></strong></div>
+            </div>
+            <div class="modal-footer border-0">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" onclick="window.print()"><i class="bi bi-printer me-1"></i> Print</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- col -->
+  </div><!-- row -->
+</div><!-- container -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // utils
+  const el = id => document.getElementById(id);
+  const fmt = n => (Number(n||0)).toLocaleString('en-LK', {minimumFractionDigits:2, maximumFractionDigits:2});
+
+  // live date/id
+  const now = new Date();
+  el('invDate').textContent = now.toLocaleString();
+  el('invId').textContent = 'INV-' + String(Math.floor(Math.random()*99999)+1).padStart(5,'0');
+
+  // Summary updaters
+  function updateSummary(){
+    const name   = el('custName').value.trim() || '-';
+    const phone  = el('custPhone').value.trim() || '-';
+    const amount = parseFloat(el('amount').value || 0);
+    const activeTab = document.querySelector('#payTabs .nav-link.active')?.id || 'cash-tab';
+
+    let fee = 0;
+    let method = 'Cash';
+    if(activeTab === 'card-tab'){ method = 'Card'; fee = amount * 0.015; }
+    if(activeTab === 'bank-tab'){ method = 'Bank'; fee = 0; }
+
+    const total = amount + fee;
+
+    el('smName').textContent = name;
+    el('smPhone').textContent = phone;
+    el('smMethod').textContent = method;
+    el('smAmount').textContent = fmt(amount);
+    el('smFee').textContent = fmt(fee);
+    el('smTotal').textContent = fmt(total);
+  }
+
+  // Cash change
+  function updateChange(){
+    const amount = parseFloat(el('amount').value || 0);
+    const rec    = parseFloat(el('cashReceived').value || 0);
+    el('cashChange').value = fmt(Math.max(rec - amount, 0));
+  }
+
+  // Card formatting + preview
+  el('ccNumber').addEventListener('input', e=>{
+    let v = e.target.value.replace(/\D/g,'').slice(0,16);
+    e.target.value = v.replace(/(.{4})/g,'$1 ').trim();
+    el('ccPreview').textContent = e.target.value || '•••• •••• •••• ••••';
+  });
+  el('ccName').addEventListener('input', e=>{
+    el('ccNamePreview').textContent = e.target.value || 'Your Name';
+  });
+  el('ccExp').addEventListener('input', e=>{
+    let v = e.target.value.replace(/\D/g,'').slice(0,4);
+    if(v.length>2) v = v.slice(0,2) + '/' + v.slice(2);
+    e.target.value = v;
+    el('ccExpPreview').textContent = v || 'MM/YY';
+  });
+
+  // Events
+  ['custName','custPhone','amount'].forEach(id=> el(id).addEventListener('input', ()=>{updateSummary(); updateChange();}));
+  ['cashReceived'].forEach(id=> el(id).addEventListener('input', ()=>{updateChange();}));
+  document.querySelectorAll('#payTabs .nav-link').forEach(btn=> btn.addEventListener('shown.bs.tab', updateSummary));
+
+  // Reset
+  el('btnReset').addEventListener('click', ()=>{
+    document.querySelectorAll('input, textarea, select').forEach(n=>{ if(n.type!=='password') n.value=''; });
+    document.querySelector('#cash-tab').click();
+    el('ccPreview').textContent='•••• •••• •••• ••••';
+    el('ccNamePreview').textContent='Your Name';
+    el('ccExpPreview').textContent='MM/YY';
+    updateSummary(); updateChange();
+    el('statusBadge').className='badge rounded-pill text-bg-secondary';
+    el('statusBadge').textContent='Pending';
+  });
+
+  // Pay
+  el('btnPay').addEventListener('click', ()=>{
+    // simple validations
+    const amount = parseFloat(el('amount').value||0);
+    const name = el('custName').value.trim();
+    if(!name || !amount || amount<=0){
+      alert('Please enter customer name and a valid amount.');
+      return;
+    }
+    const active = document.querySelector('#payTabs .nav-link.active')?.id;
+    if(active==='card-tab'){
+      if(el('ccNumber').value.replace(/\s/g,'').length<16 || !el('ccExp').value.includes('/') || el('ccCvv').value.length<3){
+        alert('Please fill valid card details.');
+        return;
+      }
+    }
+    // mark success
+    el('statusBadge').className='badge rounded-pill text-bg-success';
+    el('statusBadge').textContent='Paid';
+    el('rcptName').textContent = name;
+    el('rcptMethod').textContent = document.querySelector('#payTabs .nav-link.active').textContent.trim();
+    el('rcptTotal').textContent = el('smTotal').textContent;
+
+    const modal = new bootstrap.Modal('#successModal');
+    modal.show();
+  });
+
+  // init
+  updateSummary();
+</script>
+</body>
+</html>

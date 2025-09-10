@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="css/ViewSellStyle_ADMIN.css" rel="stylesheet">
+</head>
+<body>
+<header class="dashboard-header">
+  <div class="header-container">
+    <div class="header-content">
+      <div class="company-info">
+        <h1 class="company-title">Hy Admin</h1>
+        <p class="company-description">
+          View all track your complaints easily using our <strong>Advanced Sells Management System</strong>.
+          Experience seamless complaint resolution with real-time updates.
+        </p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="table-section">
+  <div class="table-header">
+    <div class="table-title">
+      <div class="section-icon">
+        <i class="fas fa-list"></i>
+      </div>
+      <h3 class="section-title">View Orders</h3>
+    </div>
+    <div class="table-search">
+      <input type="text" class="search-input" placeholder="Search complaints..." id="searchInput">
+      <button class="btn btn-primary" onclick="" type="button">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="complaints-table">
+      <thead>
+      <tr>
+        <th><i class="fas fa-hashtag"></i> Product_ID</th>
+        <th><i class="fas fa-file-alt"></i> count</th>
+        <th><i class="fas fa-info-circle"></i> U_Name</th>
+        <th><i class="fas fa-comment"></i> Address</th>
+        <th><i class="fas fa-calendar"></i> contactNb</th>
+        <th><i class="fas fa-cog"></i> Action</th> <!-- Action column -->
+      </tr>
+      </thead>
+      <tbody id="complaintsTableBody">
+      </tbody>
+    </table>
+<br>
+    <div class="pagination-controls">
+      <button id="prevPage">Previous</button>
+      <span id="pageInfo"></span>
+      <button id="nextPage">Next</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="JS/VieSellPageJS_ADMIN.js"></script>
+<script src="JS/Notification.js"></script>
+</body>
+</html>

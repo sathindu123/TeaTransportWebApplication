@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+
+    overflow-x: hidden; /* 🔥 Prevent horizontal scrollbar */
+}
+/* Hero Banner */
+.hero {
+    position: relative;
+    background: url("../Assicts/img/240_F_1076800628_QX6dUhoHDZ6elCWbLqh3v5wEf9qzn0E8.jpg") center/cover no-repeat;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 20px;
+}
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.hero p {
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+}
+.btn-cta {
+    margin-top: 1.5rem;
+    background: #28a745;
+    border: none;
+    padding: 0.75rem 1.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.btn-cta:hover {
+    background: #218838;
+}
+/* Navbar */
+.navbar-transparent {
+    background: transparent;
+}
+.navbar-transparent .nav-link {
+    color: white;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.navbar-transparent .nav-link:hover {
+    color: #ffcc00;
+}
+
+.navbar {
+    transition: top 0.4s;
+}
+
+.navbar-hidden {
+    top: -80px; /* Navbar height එකට සරිලන විදිහට අඩු කරන්න */
+}
+
+/* Section Style */
+.section {
+    padding: 4rem 0;
+}
+.section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}

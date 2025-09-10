@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8" />
+    <title>Monthly Dalu Viewer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!-- Bootstrap (optional for base reset/grid) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/CustomerDetailsStyle.css" rel="stylesheet" />
+    <style>
+
+    </style>
+</head>
+<body>
+
+<!-- 🏡 Hero Section -->
+<section id="home-section">
+    <h1>Mahesh Priyankara (PVT)</h1>
+    <img src="Assicts/img/mp%20w%20m.png" alt="MP Logo">
+    <h6>Welcome to the MP Tea Factory Dashboard</h6>
+</section>
+
+<div class="wrap">
+
+    <!-- header / customer -->
+    <div class="header-card">
+        <div class="header-title">
+            <div>නම- <span class="hint">DemoEstate</span></div>
+            <div class="hint" id="headerMonth">Month</div>
+        </div>
+
+        <div class="badge-slab">
+            <div><small>ලි.ස.අංකය</small> &nbsp; <strong id="ledgerId">M.T.2265</strong></div>
+            <div class="mt-1"><small>කිලෝවටක මිල</small> – <span class="hint">Rs</span> <input id="rate" type="number" class="form-control form-control-sm d-inline-block" style="width:120px" value="0" /></div>
+        </div>
+
+        <div class="controls">
+<!--            <input id="custId" class="form-control form-control-sm" placeholder="Customer ID (C001)" style="width:140px">-->
+<!--            <input id="custName" class="form-control form-control-sm" placeholder="Customer Name" style="width:180px">-->
+<!--            <input id="custTel" class="form-control form-control-sm" placeholder="Tel (+94...)" style="width:160px">-->
+
+            <select id="yearSel" class="form-select form-select-sm" style="width:110px">
+                <option value="">Year</option>
+            </select>
+            <select id="monthSel" class="form-select form-select-sm" style="width:140px">
+                <option value="">Month</option>
+                <option value="1">January</option><option value="2">February</option><option value="3">March</option>
+                <option value="4">April</option><option value="5">May</option><option value="6">June</option>
+                <option value="7">July</option><option value="8">August</option><option value="9">September</option>
+                <option value="10">October</option><option value="11">November</option><option value="12">December</option>
+            </select>
+            <button class="btn btn-sm btn-outline-info" id="btnBuild">Load Month</button>
+        </div>
+    </div>
+
+    <div class="grid">
+
+        <!-- LEFT: calendar -->
+        <div class="panel">
+            <h6>දළු ප්‍රමාණය</h6>
+            <div class="cal-wrap">
+                <table class="cal" id="calTable">
+                    <thead>
+                    <tr>
+                        <th>දින</th><th>දළු</th>
+                        <th>දින</th><th>දළු</th>
+                        <th>දින</th><th>දළු</th>
+                    </tr>
+                    </thead>
+                    <tbody id="calBody">
+                    <!-- JS renders rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- RIGHT: charges / adjustments -->
+        <div class="panel">
+            <h6>අය කිරීම්</h6>
+            <table class="charges" id="charges">
+                <thead>
+                <tr><th class="label">විස්තර</th><th>මුදල (Rs)</th></tr>
+                </thead>
+                <tbody>
+                <tr><td class="label">තේ දළ වටිනාකම</td><td><input type="number" step="0.01" class="charge" id="c_disc" value="0"></td></tr>
+                <tr><td class="label">වෙනත් එකතු කිරීම්</td><td><input type="number" step="0.01" class="charge" id="c_must" value="0"></td></tr>
+                <tr><td class="label">ගිය මස ණය</td><td><input type="number" step="0.01" class="charge" id="c_fine" value="0"></td></tr>
+                <tr><td class="label">අත්තිකාරම්</td><td><input type="number" step="0.01" class="charge" id="c_advance" value="0"></td></tr>
+                <tr><td class="label">පොහොර (Pohora)</td><td><input type="number" step="0.01" class="charge" id="c_pohora" value="0"></td></tr>
+                <tr><td class="label">තේ පැකට්</td><td><input type="number" step="0.01" class="charge" id="c_rent" value="0"></td></tr>
+                <tr><td class="label">ලිපි ද්‍රව්‍ය</td><td><input type="number" step="0.01" class="charge" id="c_misc" value="25.00"></td></tr>
+                <tr><td class="label">මුලු වටිනාකම</td><td><input type="number" step="0.01" class="charge" id="c_totalAdj" value="0"></td></tr>
+                </tbody>
+            </table>
+
+            <div class="summary">
+                <div class="sum-box">
+                    <div class="sum-line"><span>දළු එකතුව</span><span class="sum-value" id="sumDalu">0.00</span></div>
+                    <div class="sum-line"><span>අමතර අය කිරීම් එකතුව</span><span class="sum-value" id="sumCharges">0.00</span></div>
+                </div>
+                <div class="sum-box">
+                    <div class="sum-line"><span><strong>ගෙවිය යුතු එකතුව</strong></span><span class="sum-value" id="grandTotal">0.00</span></div>
+                    <div class="mt-2">
+                        <label class="form-label mb-1">ඉදිරියට අය දෙන මුදල</label>
+                        <input id="advancePay" type="number" step="0.01" class="form-control" value="0" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn-print" id="btnPrint">🖨 Print Bill</button>
+                <button class="btn-pay" id="btnPay">💳 Pay up</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="JS/Notification.js"></script>
+<script src="JS/CustomerManagePage.js"></script>
+</body>
+</html>

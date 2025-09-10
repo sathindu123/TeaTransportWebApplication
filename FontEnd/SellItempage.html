@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tea Factory - Sell Items</title>
+    <link href="css/SellItemStyle.css" rel="stylesheet">
+    <link href="css/Notification.css" rel="stylesheet">
+</head>
+<body>
+
+<h1 style="text-align:center;">🍵 MP PVT - Sell Items</h1>
+<div class="content-area">
+
+    <!-- Product cards -->
+    <div class="product-card" data-id="T001" data-name="Thekola_Leaves" data-price="750">
+        <img src="Assicts/img/tea-leaf-13238579.webp" alt="Thekola">
+        <h3>Thekola Leaves</h3>
+        <p>Rs. 250</p>
+        <button class="btn" onclick="addToCart('T-750 (50Kg)', 500, 'P001')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-id="P001" data-name="T-750(50Kg)" data-price="500">
+        <img src="Assicts/img/img_1.png" alt="Pohora">
+        <h3>T-750 (50Kg)</h3>
+        <p>Rs. 500</p>
+        <button class="btn" onclick="addToCart('T-750 (50Kg)', 500, 'P001')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-id="P003" data-name="T-750(25Kg)" data-price="250">
+        <img src="Assicts/img/img_1.png" alt="Pohora">
+        <h3>T-750 (25Kg)</h3>
+        <p>Rs. 500</p>
+        <button class="btn" onclick="addToCart('T-750 (25Kg)', 500, 'P003')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-id="P005" data-name="T-200(50Kg)" data-price="250">
+        <img src="Assicts/img/img_2.png" alt="T-200(50Kg)">
+        <h3>T-200(50Kg)</h3>
+        <p>Rs. 150</p>
+        <button class="btn" onclick="addToCart('T-200(50Kg)', 150, 'P005')">Buy Now</button>
+    </div>
+    <div class="product-card" data-id="P006" data-name="T-200(25Kg)" data-price="250">
+        <img src="Assicts/img/img_3.png" alt="T-200(25Kg)">
+        <h3>T-200(25Kg)</h3>
+        <p>Rs. 150</p>
+        <button class="btn" onclick="addToCart('T-200(25Kg)', 150,'P006')">Buy Now</button>
+    </div>
+
+    <div class="product-card" data-id="M001" data-name="Wasabothal" data-price="250">
+        <img src="Assicts/img/img_4.png" alt="Wasabothal">
+        <h3>Wasabothal</h3>
+        <p>Rs. 150</p>
+        <button class="btn" onclick="addToCart('Wasabothal', 150,'M001')">Buy Now</button>
+    </div>
+
+</div>
+
+<!-- Sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+    <h2>🛒 Your Cart</h2>
+    <div id="crt"></div>
+    <hr>
+    <div id="cartItems"></div>
+
+    <p><strong>Total:</strong> Rs. <span id="total">0</span></p>
+    <button class="btn" id="checkoutBtn" style="width:100%;">Proceed to Checkout</button>
+</div>
+
+<!-- Floating Cart Button -->
+<button class="cart-toggle"  onclick="toggleCart()">🛒</button>
+
+<!-- Checkout Form Sidebar -->
+<div class="cart-sidebar" id="checkoutSidebar">
+    <h2>🛒 Checkout</h2>
+    <div id="cartItemsCheckout"></div>
+    <hr>
+    <p><strong>Delevery Fee:</strong> Rs. <span id="delevery">350</span></p>
+    <p><strong>Total:</strong> Rs. <span id="totalCheckout">0</span></p>
+
+    <form id="checkoutForm" style="display:none; margin-top:10px;">
+        <label for="names">Name:</label><br>
+        <input type="text" id="names" name="name" placeholder="Enter your Name" required><br><br>
+
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address" placeholder="Enter your address" required><br><br>
+
+        <label for="tel">Telephone:</label><br>
+        <input type="text" id="tel" name="tel" placeholder="Enter telephone number" required><br><br>
+
+
+        <label>Payment Method:</label><br>
+        <select id="paymentMethod" required>
+            <option value="">--Select Payment--</option>
+            <option value="card">Card Payment</option>
+            <option value="bank">Bank Transfer</option>
+        </select><br><br>
+
+        <!-- Card details -->
+        <div id="cardDetails" style="display:none;">
+            <label>Card Number:</label><br>
+            <input type="text" id="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX"><br><br>
+            <label>Expiry:</label><br>
+            <input type="text" id="cardExpiry" placeholder="MM/YY"><br><br>
+            <label>CVV:</label><br>
+            <input type="text" id="cardCVV" placeholder="XXX"><br><br>
+        </div>
+
+        <!-- Bank details -->
+        <div id="bankDetails" style="display:none;">
+            <label>Bank Account Number:</label><br>
+            <input type="text" id="bankAccount" placeholder="Bank Account Number"><br><br>
+            <label>Bank Name:</label><br>
+            <input type="text" id="bankName" placeholder="Bank Name"><br><br>
+        </div>
+
+
+
+        <button type="submit" id="conformbtn" class="btn" style="width:100%;">Confirm Order</button>
+
+    </form>
+
+    <button class="btn" id="checkoutBtnSidebar" style="width:100%;">Proceed to Checkout</button>
+</div>
+
+
+
+<br>
+<br>
+<!-- Contact with me -->
+<footer>
+    <div class="topic">
+        <h3>Contact with me</h3>
+    </div>
+    <div class="content">
+        <!--left side-->
+        <div class="left">
+            <h3>Let’s Work Together</h3>
+            <p>
+                Let’s connect! Whether you have a question, a collaboration idea, or just want to chat, feel free to reach out. I’d love to hear from you!
+            </p>
+            <br>
+            <div class="address">
+                <img src="Assicts/Let's%20contact/pngwing.com%20(5).png" alt="Location">
+                <p>neluwa, Srilanka</p>
+            </div>
+            <div class="email">
+                <img src="Assicts/Let's%20contact/4202011_email_gmail_mail_logo_social_icon.png" alt="Email">
+                <a href="mailto:sathindusathsarakumara@gmail.com">sathindusathsarakumara@gmail.com</a>
+            </div>
+            <div class="phone">
+                <img src="Assicts/Let's%20contact/%5BCITYPNG.COM%5DHD%20Green%20Round%20Circle%20Phone%20Icon%20Transparent%20PNG%20-%202000x2000.png" alt="Phone">
+                <a href="tel:+94769274511">+94 76 92 74 511</a>
+            </div>
+        </div>
+
+        <!--Right side-->
+        <div class="right">
+            <div class="image">
+                <a class="linkedin" href="https://www.linkedin.com/in/lahiru-sanjeewa-8b2a59323/" target="_blank"><img src="Assicts/Footer/linkedin.png"></a>
+                <a class="github" href="https://github.com/Lahiru075" target="_blank"><img src="Assicts/Footer/github.png"></a>
+                <a class="facebook" href="https://www.facebook.com/profile.php?id=61554911463640" target="_blank"><img src="Assicts/Footer/facebook.png"></a>
+                <a class="instagram" href="https://www.instagram.com/lakshan_lahiruu/" target="_blank"><img src="Assicts/Footer/instagram.png"></a>
+            </div>
+            <div class="name">
+                <h4>Design by Sathindu</h4>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<script src="JS/SellItemPage.js"></script>
+<script src="JS/Notification.js"></script>
+</body>
+</html>
+
+
+
