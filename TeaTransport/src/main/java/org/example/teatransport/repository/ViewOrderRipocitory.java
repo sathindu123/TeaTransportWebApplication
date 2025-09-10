@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Map;
 
@@ -27,5 +28,12 @@ public interface ViewOrderRipocitory extends JpaRepository<SellProduct, String> 
     @Transactional
     @Query("DELETE FROM OrderReqDetails sp WHERE sp.oID = :id")
     int deleteByreq(String id);
+
+    @Query("SELECT new map(sp.productId as productId, sp.count as count, " +
+            "ord.custName as custName, ord.custAddress as custAddress, ord.custTel as custTel, ord.oID as oid) " +
+            "FROM SellProduct sp " +
+            "JOIN sp.order ord " +
+            "WHERE ord.custName LIKE CONCAT('%', :query, '%')")
+    Page<Map<String, Object>> fetchOrderUserName(@Param("query") String query, Pageable pageable);
 
 }

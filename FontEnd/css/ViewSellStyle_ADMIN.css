@@ -665,3 +665,28 @@ body::before {
     background-color: #c0392b; /* Darker red on hover */
 }
 
+
+
+.table-search {
+    position: relative;
+}
+
+.autocomplete-items {
+    position: absolute;
+    top: 40px; /* search box එකට just below */
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    background: #fff;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.autocomplete-items div {
+    padding: 8px;
+    cursor: pointer;
+}
+.autocomplete-items div:hover {
+    background: #f0f0f0;
+}
+

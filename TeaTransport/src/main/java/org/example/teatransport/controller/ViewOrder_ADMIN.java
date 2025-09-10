@@ -1,6 +1,9 @@
 package org.example.teatransport.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.teatransport.entity.OrderReqDetails;
+import org.example.teatransport.entity.User;
+import org.example.teatransport.repository.OrderReqRipocitory;
 import org.example.teatransport.service.ViewOrderService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +18,9 @@ import java.util.Map;
 @RequiredArgsConstructor
 @CrossOrigin // Allow your frontend origin
 public class ViewOrder_ADMIN {
+
     private final ViewOrderService viewOrderService;
+    private final OrderReqRipocitory orderReqRipocitory;
 
     @GetMapping("/viewOrder")
     public Page<Map<String, Object>> getOrders(Pageable pageable){
@@ -28,6 +33,18 @@ public class ViewOrder_ADMIN {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/LoadTableSudjest")
+    public Page<Map<String, Object>> serachUserLoadTable(@RequestParam("query") String query, Pageable pageable){
+        return viewOrderService.SearchOrderInputUser(query,pageable);
+    }
 
+
+    @GetMapping("/searchUser")
+    public List<String> searchUsernames(@RequestParam String query) {
+        return orderReqRipocitory.findTop5ByCustNameContainingIgnoreCase(query)
+                .stream()
+                .map(OrderReqDetails::getCustName)
+                .toList();
+    }
 
 }
