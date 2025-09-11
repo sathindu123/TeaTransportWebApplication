@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin// Allow your frontend origin
+@CrossOrigin
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor

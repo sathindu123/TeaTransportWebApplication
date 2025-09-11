@@ -25,7 +25,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-@CrossOrigin // Allow your frontend origin
+@CrossOrigin
 public class SellController {
 
     private String uID;

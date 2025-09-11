@@ -33,15 +33,15 @@ public class InvoiceCustomerController {
     @GetMapping("/me")
         public ResponseEntity<String> setCustomerName() {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String username = authentication.getName();   // ✅ login වෙච්ච userගේ username
+            String username = authentication.getName();
 
-            // DB එකෙන් user id ගන්න
+
             User user = userRepository.findByUsername(username)
                     .orElseThrow(() -> new RuntimeException("User not found"));
 
 
 
-            // Customer table එකෙන් name ගන්න
+
             Customer customer = customerRipocitory.findById(user.getId())
                     .orElseThrow(() -> new RuntimeException("Customer not found"));
 

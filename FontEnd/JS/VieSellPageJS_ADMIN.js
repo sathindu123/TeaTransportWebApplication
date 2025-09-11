@@ -37,7 +37,6 @@ document.getElementById("searchButton").addEventListener("click", async function
 
 
         data.content.forEach(order => {
-            console.log(order,"ssa");
             let row = `
                 <tr>
                     <td>${order.productId}</td>

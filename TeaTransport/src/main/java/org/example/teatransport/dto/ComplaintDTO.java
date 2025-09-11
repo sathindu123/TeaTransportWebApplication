@@ -11,6 +11,6 @@ public class ComplaintDTO {
     private String description;
     private String status;
     private String remarks;
-    private Timestamp createdDate;
+    private String date;
 
 }

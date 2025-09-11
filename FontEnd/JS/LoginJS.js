@@ -84,22 +84,6 @@ function validatePassword(password) {
 }
 
 
-// login.js
-window.addEventListener("load", function() {
-    // login page load වුන විට token remove
-    localStorage.removeItem("token");
 
-    // login page replace state (back/forward block)
-    window.history.replaceState({page: "login"}, "", window.location.href);
-
-    // popstate handle කරන්න
-    window.addEventListener("popstate", function(event) {
-        if (event.state && event.state.page === "login") {
-            console.log("Back/Forward blocked on login page");
-            // Redirect to dashboard if back/forward pressed
-            window.location.href = "Dashbord.html";
-        }
-    });
-});
 
 

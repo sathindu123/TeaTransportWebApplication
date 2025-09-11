@@ -16,7 +16,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
-@CrossOrigin // Allow your frontend origin
+@CrossOrigin
 public class ViewOrder_ADMIN {
 
     private final ViewOrderService viewOrderService;
