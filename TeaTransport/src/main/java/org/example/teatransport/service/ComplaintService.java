@@ -39,4 +39,21 @@ public class ComplaintService {
         complaintRipocitory.save(com);
 
     }
+
+    public void updateComplaint(String cmID, String des) {
+        complaintRipocitory.updateCopmalint(cmID,des);
+    }
+
+    public int[] getcount(Optional<User> user) {
+        int[] array = new int[4];
+
+        String userId = user.get().getId();
+
+        array[0] = complaintRipocitory.getAllCount(userId);
+        array[1] = complaintRipocitory.getPendingCount(userId);
+        array[2] = complaintRipocitory.getInProgressCount(userId);
+        array[3] = complaintRipocitory.getResolvedCount(userId);
+
+        return array;
+    }
 }

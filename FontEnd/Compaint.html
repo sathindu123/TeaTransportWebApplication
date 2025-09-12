@@ -132,11 +132,11 @@
               <i class="fas fa-save"></i>
               Save Complaint
             </button>
-            <button type="submit" name="action" value="update" class="btn btn-secondary">
+            <button id="updatebtn" type="submit" name="action" value="update" class="btn btn-secondary">
               <i class="fas fa-edit"></i>
               Update Complaint
             </button>
-            <button type="submit" name="action" value="delete" class="btn btn-danger">
+            <button id="deletebtn" type="submit" name="action" value="delete" class="btn btn-danger">
               <i class="fas fa-trash"></i>
               Delete Complaint
             </button>
@@ -152,12 +152,6 @@
               <i class="fas fa-list"></i>
             </div>
             <h3 class="section-title">My Complaints</h3>
-          </div>
-          <div class="table-search">
-            <input type="text" class="search-input" placeholder="Search complaints..." id="searchInput">
-            <button class="btn btn-primary" onclick="" type="button">
-              <i class="fas fa-search"></i>
-            </button>
           </div>
         </div>
 
@@ -175,6 +169,12 @@
             <tbody id="complaintsTableBody">
             </tbody>
           </table>
+        </div>
+        <br>
+        <div class="pagination-controls">
+          <button id="prevPage">Previous</button>
+          <span id="pageInfo"></span>
+          <button id="nextPage">Next</button>
         </div>
       </div>
     </div>

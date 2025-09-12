@@ -7,6 +7,7 @@ import org.example.teatransport.entity.User;
 import org.example.teatransport.repository.ComplaintRipocitory;
 import org.example.teatransport.repository.UserRepository;
 import org.example.teatransport.service.ComplaintService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,28 @@ public class ComplaintController {
     private final ComplaintRipocitory complaintRipocitory;
     private final ComplaintService complaintService;
     private final UserRepository userRepository;
+
+    @PutMapping("/updateComplaint/{cmID}/{des}")
+    public ResponseEntity<String> updateComplint(@PathVariable String cmID , @PathVariable String des){
+        try {
+            complaintService.updateComplaint(cmID,des);
+            return ResponseEntity.ok("Complaint updated successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error Update complaint");
+        }
+    }
+
+    @DeleteMapping("/deleteComplaint/{id}")
+    public ResponseEntity<String> deleteComplaint(@PathVariable String id) {
+        try {
+            complaintRipocitory.deleteById(id);
+            return ResponseEntity.ok("Complaint deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error deleting complaint");
+        }
+    }
 
     @PostMapping("/submit")
     public ResponseEntity<String> submit(@RequestBody ComplaintDTO complaint,
@@ -62,6 +85,15 @@ public class ComplaintController {
         return ResponseEntity.ok(complaintDTOs);
     }
 
+
+    @GetMapping("/getCountCom")
+    public int[] getcontCom(@AuthenticationPrincipal org.springframework.security.core.userdetails.User userDetails){
+        Optional<User> user = userRepository.findByUsername(userDetails.getUsername());
+        List<Complaint> complaints = complaintRipocitory.findByUser(user);
+
+        return complaintService.getcount(user);
+
+    }
 
 
 
