@@ -1,4 +1,7 @@
 
+let currentPage = 0;   // use camelCase everywhere
+let pageSize = 5;
+
 const descc = document.getElementById("description1");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -182,19 +185,20 @@ function genarateComplaintID() {
 
     localStorage.setItem("lastComplaintId", lastId);
 
-    loadTable();
+    loadTable(currentPage);
+    setupPagination();
 }
 
-async function loadTable() {
+async function loadTable(page) {
     const token = localStorage.getItem("token");
 
     try {
-        const response = await fetch("http://localhost:8080/auth/LoadComplaint", {
+        const response = await fetch(`http://localhost:8080/auth/LoadComplaint?page=${page}&size=${pageSize}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + token
-            },
+            }
         });
 
         if (!response.ok) {
@@ -203,12 +207,13 @@ async function loadTable() {
 
         const data = await response.json();
 
+        console.log(data + "sasa");
 
 
         const table = document.getElementById("complaintsTableBody");
         table.innerHTML = "";
 
-        data.forEach(cmt => {
+        data.content.forEach(cmt => {
             let row = `
                 <tr>
                     <td>${cmt.complainId}</td>
@@ -221,11 +226,34 @@ async function loadTable() {
             table.innerHTML += row;
         });
 
+        document.getElementById("pageInfo").innerText =
+            `Page ${data.number + 1} of ${data.totalPages}`;
+
+
         addRowClickListeners();
     }catch (error) {
+        console.log(error)
         Swal.fire("Error loading orders:");
     }
 }
+
+
+function setupPagination() {
+    document.getElementById("prevPage").addEventListener("click", function () {
+        if (currentPage > 0) {
+            currentPage--;
+            loadTable(currentPage);
+        }
+    });
+
+    document.getElementById("nextPage").addEventListener("click", function () {
+        currentPage++;
+        loadTable(currentPage);
+
+    });
+}
+
+
 
 document.getElementById("submitbtn").addEventListener("click", async (event) => {
     event.preventDefault();
