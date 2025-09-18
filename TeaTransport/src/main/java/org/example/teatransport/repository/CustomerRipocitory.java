@@ -14,6 +14,9 @@ import java.util.Optional;
 public interface CustomerRipocitory extends JpaRepository<Customer,String> {
     Optional<Customer> findByName(String name);
 
+    @Query("select c.id from Customer c where c.name = :name")
+    String findByIds(String name);
+
 //    @Query("SELECT COALESCE(SUM(a.monthPrice), 0) FROM Advance a WHERE a.custId = :custId AND a.month = :month")
 //    Double getadvance(@Param("custId") String custId, @Param("month") String month);
 

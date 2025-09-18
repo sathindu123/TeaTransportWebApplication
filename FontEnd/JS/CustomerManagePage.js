@@ -1,5 +1,10 @@
+let good = 0;
+let gold = 0;
+
+let allGiveCount = 0;
+
 document.addEventListener("DOMContentLoaded", function () {
-    // token / role localStorage එකේ store කරලා තිබෙනවා කියලා assume කරමු
+
     const role = localStorage.getItem("role");
 
 
@@ -13,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
 // ---- helpers
 const fmt = n => (Number(n||0)).toFixed(2);
 
-// populate years (current-3 .. current+2)
 (function fillYears(){
     const ySel = document.getElementById('yearSel');
     const y = new Date().getFullYear();
@@ -25,17 +29,10 @@ const fmt = n => (Number(n||0)).toFixed(2);
     }
 })();
 
-document.getElementById('btnBuild').addEventListener('click', buildCalendar);
-document.getElementById('btnPrint').addEventListener('click', () => window.print());
-document.getElementById('btnPay').addEventListener('click', () => {
-    alert('Payment recorded (demo). Total: Rs ' + document.getElementById('grandTotal').textContent);
-});
 
-// Charges auto recalc
 document.querySelectorAll('.charge').forEach(el=>{
     el.addEventListener('input', recalcTotals);
 });
-document.getElementById('advancePay').addEventListener('input', recalcTotals);
 
 function daysInMonth(year, month){ // month 1..12
     return new Date(year, month, 0).getDate();
@@ -59,6 +56,7 @@ function buildCalendar(){
         }
     }
 
+
     const maxRows = Math.max(columns[0].length, columns[1].length, columns[2].length);
     const tbody = document.getElementById('calBody');
     tbody.innerHTML='';
@@ -77,19 +75,18 @@ function buildCalendar(){
             if(dayNum){
                 const inp = document.createElement('input');
                 inp.type='number';
-                inp.step='0.01';
                 inp.placeholder='0.00';
-                inp.dataset.day = dayNum;
                 inp.className='dalu';
-                inp.addEventListener('input', recalcTotals);
+                inp.dataset.day = dayNum;
                 tdAmt.appendChild(inp);
+                inp.readOnly = true;
             }
             tr.appendChild(tdAmt);
         }
         tbody.appendChild(tr);
     }
 
-    recalcTotals();
+
 }
 
 function recalcTotals(){
@@ -103,12 +100,6 @@ function recalcTotals(){
     let charges = 0;
     document.querySelectorAll('.charge').forEach(i=> charges += Number(i.value||0) );
 
-    // apply advancePay subtraction if any (as demo)
-    const advance = Number(document.getElementById('advancePay').value || 0);
-
-    document.getElementById('sumDalu').textContent = fmt(daluTotal);
-    document.getElementById('sumCharges').textContent = fmt(charges);
-    document.getElementById('grandTotal').textContent = fmt(daluTotal - advance - charges);
 }
 
 // initial state: auto set to current month
@@ -186,6 +177,7 @@ async function loadDetails(date) {
         });
 
         if (!response.ok) {
+
             alert("Error Load Details");
             return;
         }
@@ -195,14 +187,104 @@ async function loadDetails(date) {
 
 
 
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] === null){
+                data[i] = 0;
+            }
+        }
+
+
         document.getElementById("c_advance").value = data[0];
         document.getElementById("c_pohora").value = data[3];
         document.getElementById("c_rent").value = data[1];
         document.getElementById("c_other").value = data[2];
         document.getElementById("c_fine").value = data[4];
+        document.getElementById("l1").textContent = data[5];
+        document.getElementById("l2").textContent = data[6];
 
-            alert("Error Load Details ds");
+        allGiveCount = (data[0]+data[1]+data[2]+data[3]+data[4]+25);
 
+
+
+        good = data[5];
+        gold = data[6];
+
+        try {
+            const response = await fetch(`http://localhost:8080/auth/loaddTeaLeaf/${name}/${date}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            const data = await response.json();
+
+            console.log(data);
+
+            if (!response.ok) {
+
+                alert("Error Load Details");
+                return;
+            }
+
+            const inputs = document.querySelectorAll('input.dalu');
+            inputs.forEach(inp => {
+                const day = parseInt(inp.dataset.day); // day number stored in dataset
+                if(day && data[day] !== undefined){
+                    inp.value = data[day]; // assign value from backend
+                }
+            });
+
+
+            recalcTotals();
+
+            try {
+                const response = await fetch(`http://localhost:8080/auth/loaddTeaLeafCount/${name}/${date}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                const data1 = await response.json();
+
+
+                if (!response.ok){
+                    alert("Error Load Details");
+                }
+
+                document.getElementById("l3").textContent = data1[0];
+                document.getElementById("l4").textContent = data1[1];
+
+                const tot = data1[0] + data1[1];
+                document.getElementById("TotCount").value = tot;
+
+                const total = (good*data1[0]+gold*data1[1]);
+                document.getElementById("c_disc").value = total;
+                document.getElementById("sumDalu").textContent = total;
+
+                if (allGiveCount > total){
+                    const tm = allGiveCount - total;
+                    document.getElementById("advancepay").textContent = tm;
+                    advancepay.style.color ="red";
+                }
+                else {
+                    const tt = total-allGiveCount;
+                    document.getElementById("sumCharges").textContent = tt;
+                }
+
+
+            }catch (error) {
+
+                alert("Error Load Detailsdaw");
+            }
+
+        }catch (error) {
+
+            alert("Error Load Detailsdwqwq");
+        }
+
+        document.getElementById("grandTotal").textContent = allGiveCount;
 
     }catch (error) {
 

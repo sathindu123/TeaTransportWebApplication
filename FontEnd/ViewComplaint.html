@@ -23,7 +23,7 @@
           <div class="user-info">
             <span class="user-role">Administrator</span>
             <form method="POST" action="AdminDashServlet">
-              <button type="submit" name="action" value="logout" class="btn btn-primary">
+              <button type="button" id="logOuntbtn" name="action" value="logout" class="btn btn-primary">
                 Logout
               </button>
             </form>
@@ -65,7 +65,7 @@
           </div>
           <input type="hidden" id="description" name="description">
           <input type="hidden" id="createAt" name="createAt">
-          <button type="submit" name="action" value="update" class="btn btn-primary" id="updatebtn">
+          <button type="button" name="action" value="update" class="btn btn-primary" id="updatebtn">
             Update Complaint
           </button>
         </form>

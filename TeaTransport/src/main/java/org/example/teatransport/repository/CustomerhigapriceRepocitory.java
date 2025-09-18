@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerhigapriceRepocitory extends JpaRepository<Customerhigaprice, String> {
 
-    @Query(value = "SELECT COALESCE(SUM(price),0) FROM customerhigaprice WHERE custId = :custId AND month = :month", nativeQuery = true)
+    @Query(value = "SELECT COALESCE(SUM(price),0) FROM customerhigaprice WHERE custId = :custId AND month = :date", nativeQuery = true)
     Double gethiga(String custId, String date);
 }

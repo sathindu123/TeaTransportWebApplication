@@ -2,10 +2,10 @@ package org.example.teatransport.service;
 
 import lombok.RequiredArgsConstructor;
 import org.example.teatransport.entity.Customer;
-import org.example.teatransport.entity.User;
 import org.example.teatransport.repository.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +16,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class CustomerService {
 
+    private final MonthlyRateRipocitory monthlyRateRipocitory;
     private final CustomerRipocitory customerRipocitory;
     private final AdvanceRipocitory advanceRipocitory;
     private final UserRepository userRepository;
@@ -34,8 +35,37 @@ public class CustomerService {
         return ss;
     }
 
+    public int[] getTeaLeaf(String name, String date){
+        YearMonth ym = convertToYearMonth(date);
+        int daysInMonth = ym.lengthOfMonth();
+
+        String id = String.valueOf(customerRipocitory.findByIds(name));
+
+
+        int[] array = new int[daysInMonth + 1];
+
+        for (int i = 1; i <= daysInMonth; i++) {
+            LocalDate ss = ym.atDay(i);
+            int temp = monthlyRateRipocitory.getCountTeaLeaf(id, ss);
+            array[i] = temp;
+        }
+
+
+        return array;
+    }
+
+    private String getStartDate1(String date) {
+        YearMonth ym = convertToYearMonth(date);
+        return ym.toString(); // start of month
+    }
+
 
     public Double[] getDetails(String name, String date) {
+
+        String year = date.replaceAll("[^0-9]", "");       // Extract digits → 2025
+        String month = date.replaceAll("[0-9]", "");      // Extract letters → SEPTEMBER
+
+        String newdate = year + month;
 
         String custId = "";
         String MID = "M001";
@@ -54,7 +84,7 @@ public class CustomerService {
         }
 
 
-        Double[] array = new Double[5];
+        Double[] array = new Double[7];
 
         try {
             array[0] = advanceRipocitory.getAdvance(custId,date);
@@ -62,11 +92,15 @@ public class CustomerService {
             array[2] = productpurchaseRipocitory.getcountProductT(custId,StrartDate,endDate,TID);
             array[3] = pohorapurchasecustomerRepocitory. getcountPohora(custId,date);
             array[4] = customerhigapriceRepocitory.gethiga(custId,date);
+            array[5] = monthlyRateRipocitory.getgoldRate(newdate);
+            array[6] = monthlyRateRipocitory.getgoodRate(newdate);
+
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
 
         }
+
         return array;
     }
 
@@ -110,9 +144,20 @@ public class CustomerService {
         }
 
 
+    public int[] getTeaLeafCOunt(String name, String date) {
+        String id = String.valueOf(customerRipocitory.findByIds(name));
+        LocalDate StrartDate = LocalDate.parse(getStartDate(date));
+        LocalDate endDate = LocalDate.parse(getEndDate(date));
 
-
-
+        int[] array = new int[2];
+        try {
+            array[0] = monthlyRateRipocitory.getTealEafCount(id,StrartDate,endDate);
+            array[1] = monthlyRateRipocitory.getTealEafCount1(id,StrartDate,endDate);
+            return array;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 }

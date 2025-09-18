@@ -1,25 +1,28 @@
 package org.example.teatransport.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "teabaginventory")
 public class TeaBagInventory {
     @Id
-    private String id;
-    private int qty;
-    private String name;
-    private String date;
-    private int goldLeaf;
-    private int goodLeaf;
+    @Column(name = "custId")
+    private String custId;
+    private LocalDate date;
+    @Column(name = "goldLeafAmount")
+    private int goldLeafAmount;
+    @Column(name = "goodLeafAmount")
+    private int goodLeafAmount;
 
 
 }

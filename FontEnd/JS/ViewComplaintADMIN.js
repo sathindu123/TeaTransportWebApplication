@@ -1,6 +1,11 @@
 let currentPage = 0;   // use camelCase everywhere
 let pageSize = 5;
 
+document.getElementById("logOuntbtn").addEventListener("click", () => {
+    window.location.replace("Login.html");
+
+
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     loadTable(currentPage)
@@ -34,6 +39,8 @@ document.getElementById("updatebtn").addEventListener("click", async function ()
             showNotification(response, "error");
             return;
         }
+
+        loadTable(currentPage);
 
     } catch (e) {
         showNotification(e, "error");
@@ -75,11 +82,13 @@ async function loadTable(currentPage) {
             });
 
 
+
             document.getElementById("pageInfo").innerText =
                 `Page ${data.number + 1} of ${data.totalPages}`;
 
 
             addRowClickListeners();
+
 
         }else {
             showNotification(response, "error");

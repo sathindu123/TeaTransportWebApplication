@@ -39,6 +39,15 @@ public class InvoiceCustomerController {
 
     }
 
+    @GetMapping("/loaddTeaLeafCount/{name}/{date}")
+    public int[] getTeaLeaf(@PathVariable String name, @PathVariable String date){
+        return customerService.getTeaLeafCOunt(name,date);
+    }
+
+    @GetMapping("/loaddTeaLeaf/{name}/{date}")
+    public int[] getTeaLeafCount(@PathVariable String name, @PathVariable String date){
+        return customerService.getTeaLeaf(name,date);
+    }
 
     @GetMapping("/me")
         public ResponseEntity<String> setCustomerName() {

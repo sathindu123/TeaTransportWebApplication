@@ -29,10 +29,11 @@
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
                 හොද දළු &nbsp; රන් දළු</strong></div>
 
-            <div class="mt-1"><small>කිලෝවටක මිල</small> – <span class="hint">&nbsp </span>
-                <label class="switch">rs:</label> <label class="switch">&nbsp &nbsp&nbsp&nbsp &nbsp &nbsp &nbsp rs:</label></div>
-            <div class="mt-1"><small>මුළු දළු ප්‍රමාණය</small> – <span class="hint">&nbsp</span>
-                <label class="switch">rs:</label> <label class="switch">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp rs:</label></div>
+            <div class="mt-1" id="sdf"><small>කිලෝවටක මිල</small> Rs:<span class="hint">&nbsp </span>
+                <label id="l1" class="switch">00</label> <label id="l2" class="switch">00</label>
+            </div>
+            <div class="mt-1"><small>මුළු දළු ප්‍රමාණය </small>   – <span class="hint">&nbsp</span>
+                <label id="l3" class="switch">00</label> <label id="l4" class="switch">00</label></div>
         </div>
 
         <div class="controls">
@@ -71,7 +72,13 @@
                     <tbody id="calBody">
                     <!-- JS renders rows -->
                     </tbody>
+
                 </table>
+                <hr>
+                <div class="sum-box">  <span><label id="Label21" class="form-label mb-1">මුලු දළු එකතුව</label>
+                <input id="TotCount" type="number"  readonly/></span></div>
+
+
             </div>
         </div>
 
@@ -91,32 +98,31 @@
                 <tr><td class="label">තේ පැකට් අඩු කිරීම්</td><td><input type="number" step="0.01" class="charge" id="c_rent" value="0" readonly></td></tr>
                 <tr><td class="label">ලිපි ද්‍රව්‍ය අඩු කිරීම්</td><td><input type="number" step="0.01" class="charge" id="c_misc" value="25.00" readonly></td></tr>
                 <tr><td class="label">වෙනත් අඩු කිරීම්</td><td><input type="number" step="0.01" class="charge" id="c_other" value="0.00" readonly></td></tr>
-                <tr><td class="label">මුලු වටිනාකම</td><td><input type="number" step="0.01" class="charge" id="c_totalAdj" value="0" readonly></td></tr>
+
                 </tbody>
             </table>
 
             <div class="summary">
                 <div class="sum-box">
-                    <div class="sum-line"><span>දළු එකතුව</span><span class="sum-value" id="sumDalu">0.00</span></div>
-                    <div class="sum-line"><span>අමතර අය කිරීම් එකතුව</span><span class="sum-value" id="sumCharges">0.00</span></div>
+                    <div class="sum-line"><span>තේ දළ වටිනාකම</span><span class="sum-value" id="sumDalu">0.00</span></div>
+                    <div class="sum-line"><span>ශුද්ධ වටිනාකම</span><span class="sum-value" id="sumCharges">0.00</span></div>
                 </div>
                 <div class="sum-box">
-                    <div class="sum-line"><span><strong>ගෙවිය යුතු එකතුව</strong></span><span class="sum-value" id="grandTotal">0.00</span></div>
+                    <div class="sum-line"><span><strong>අය කිරීම් එකතුව</strong></span><span class="sum-value" id="grandTotal">0.00</span></div>
                     <div class="mt-2">
-                        <label class="form-label mb-1">ඉදිරියට අය දෙන මුදල</label>
-                        <input id="advancePay" type="number" step="0.01" class="form-control" value="0" />
+                        <div class="sum-line"><span><strong>ඉදිරියට යන හිග මුදල</strong></span><span class="sum-value" id="advancepay">0.00</span></div>
                     </div>
                 </div>
             </div>
-
-            <div class="actions">
-                <button class="btn-print" id="btnPrint">🖨 Print Bill</button>
-                <button class="btn-pay" id="btnPay">💳 Pay up</button>
-            </div>
+            
         </div>
 
     </div>
 
+</div>
+
+<div class="footer">
+    <p>If there is any mistake in this bill, you can make a complaint. We will review it and send you response. <a href="Compaint.html"> Submit Complaint</a></p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -14,6 +14,51 @@
     --input-bg:#ffffff;      /* white inputs */
 }
 
+#l1,#l2{
+    margin-left: 20px;
+    color: blue;
+    font-weight: bold;
+}
+#l2{
+    margin-left: 32px;
+    color: blue;
+    font-weight: bold;
+}
+#l3{
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+#l4{
+    margin-left: 40px;
+    font-weight: bold;
+}
+.footer{
+    text-align: center;
+
+}
+.footer a{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+#Label21{
+    margin-top: 20px;
+    margin-left: 360px;
+    font-weight: bold;
+    font-size: 18px;
+}
+#TotCount{
+    background:var(--panel);
+    border:1px solid var(--outline);
+    border-radius:6px;
+    text-align: right;
+    font-weight: bold;
+    width: 120px;
+    height: 40px;
+
+}
 
 body {
     overflow-x: hidden;
