@@ -122,8 +122,8 @@ function recalcTotals(){
 async function loadCustomerName() {
     try {
         const token = localStorage.getItem("token");// Login වෙද්දී save කරන JWT token
-        console.log(token  , " token");
-        const response = await fetch("http://localhost:8080/invoiceCustomer/me", {
+
+        const response = await fetch("http://localhost:8080/auth/me", {
             method: "GET",
             contentType: "application/json",
             headers: {
@@ -149,8 +149,65 @@ async function loadCustomerName() {
         showNotification(error, "error");
         console.error(error);
     }
+
+
 }
 
 
 document.addEventListener("DOMContentLoaded", loadCustomerName);
 
+
+
+document.getElementById("btnBuild").addEventListener("click", () =>{
+    const month = document.getElementById("monthSel");
+    const selectedMonthText = month.options[month.selectedIndex].text;
+
+    const year = document.getElementById("yearSel").value;
+    const date = selectedMonthText+year;
+
+
+    loadDetails(date);
+
+});
+
+
+async function loadDetails(date) {
+
+
+    const hint = document.querySelector(".hint");
+    const name = hint.textContent;
+
+    try {
+        const response = await fetch(`http://localhost:8080/auth/loaddetailsCUS/${name}/${date}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (!response.ok) {
+            alert("Error Load Details");
+            return;
+        }
+
+
+        const data = await response.json();
+
+
+
+        document.getElementById("c_advance").value = data[0];
+        document.getElementById("c_pohora").value = data[3];
+        document.getElementById("c_rent").value = data[1];
+        document.getElementById("c_other").value = data[2];
+        document.getElementById("c_fine").value = data[4];
+
+            alert("Error Load Details ds");
+
+
+    }catch (error) {
+
+        alert("Error Load Details22");
+    }
+
+
+}

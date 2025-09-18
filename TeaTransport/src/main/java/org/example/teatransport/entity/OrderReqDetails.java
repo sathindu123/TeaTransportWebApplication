@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "order_req_details")
 public class OrderReqDetails {
     @Id
     @Column(name = "oid")

@@ -130,18 +130,14 @@ body::before {
     gap: 0.5rem;
 }
 
-/* Main Content */
+/* Main content */
 .main-content {
-    padding: 3rem 0;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
 }
 
-.dashboard-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: grid;
-    gap: 2rem;
-}
+
 
 /* Stats Cards */
 .stats-section {

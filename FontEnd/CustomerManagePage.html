@@ -13,25 +13,26 @@
 </head>
 <body>
 
-<!-- 🏡 Hero Section -->
-<section id="home-section">
-    <h1>Mahesh Priyankara (PVT)</h1>
-    <img src="Assicts/img/mp%20w%20m.png" alt="MP Logo">
-    <h6>Welcome to the MP Tea Factory Dashboard</h6>
-</section>
 
 <div class="wrap">
 
     <!-- header / customer -->
     <div class="header-card">
         <div class="header-title">
+            <small><font size="3"> ලි.ප.අංකය M.T.2265</font></small><br><br>
             <div>නම- <span class="hint">DemoEstate</span></div>
             <div class="hint" id="headerMonth">Month</div>
         </div>
 
         <div class="badge-slab">
-            <div><small>ලි.ස.අංකය</small> &nbsp; <strong id="ledgerId">M.T.2265</strong></div>
-            <div class="mt-1"><small>කිලෝවටක මිල</small> – <span class="hint">Rs</span> <input id="rate" type="number" class="form-control form-control-sm d-inline-block" style="width:120px" value="0" /></div>
+            <div><strong id="ledgerId">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                හොද දළු &nbsp; රන් දළු</strong></div>
+
+            <div class="mt-1"><small>කිලෝවටක මිල</small> – <span class="hint">&nbsp </span>
+                <label class="switch">rs:</label> <label class="switch">&nbsp &nbsp&nbsp&nbsp &nbsp &nbsp &nbsp rs:</label></div>
+            <div class="mt-1"><small>මුළු දළු ප්‍රමාණය</small> – <span class="hint">&nbsp</span>
+                <label class="switch">rs:</label> <label class="switch">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp rs:</label></div>
         </div>
 
         <div class="controls">
@@ -76,20 +77,21 @@
 
         <!-- RIGHT: charges / adjustments -->
         <div class="panel">
-            <h6>අය කිරීම්</h6>
+            <h6>අය කිරීම් සහ අඩු කිරීම්</h6>
             <table class="charges" id="charges">
                 <thead>
                 <tr><th class="label">විස්තර</th><th>මුදල (Rs)</th></tr>
                 </thead>
                 <tbody>
-                <tr><td class="label">තේ දළ වටිනාකම</td><td><input type="number" step="0.01" class="charge" id="c_disc" value="0"></td></tr>
-                <tr><td class="label">වෙනත් එකතු කිරීම්</td><td><input type="number" step="0.01" class="charge" id="c_must" value="0"></td></tr>
-                <tr><td class="label">ගිය මස ණය</td><td><input type="number" step="0.01" class="charge" id="c_fine" value="0"></td></tr>
-                <tr><td class="label">අත්තිකාරම්</td><td><input type="number" step="0.01" class="charge" id="c_advance" value="0"></td></tr>
-                <tr><td class="label">පොහොර (Pohora)</td><td><input type="number" step="0.01" class="charge" id="c_pohora" value="0"></td></tr>
-                <tr><td class="label">තේ පැකට්</td><td><input type="number" step="0.01" class="charge" id="c_rent" value="0"></td></tr>
-                <tr><td class="label">ලිපි ද්‍රව්‍ය</td><td><input type="number" step="0.01" class="charge" id="c_misc" value="25.00"></td></tr>
-                <tr><td class="label">මුලු වටිනාකම</td><td><input type="number" step="0.01" class="charge" id="c_totalAdj" value="0"></td></tr>
+                <tr><td class="label">තේ දළ වටිනාකම</td><td><input type="number" step="0.01" class="charge" id="c_disc" value="0" readonly></td></tr>
+                <tr><td class="label">වෙනත් එකතු කිරීම්</td><td><input type="number" step="0.01" class="charge" id="c_must" value="0" readonly></td></tr>
+                <tr><td class="label">ගිය මස ණය අඩු කිරීම්</td><td><input type="number" step="0.01" class="charge" id="c_fine" value="0" readonly></td></tr>
+                <tr><td class="label">අත්තිකාරම් අඩු කිරීම්</td><td><input type="number" step="0.01" class="charge" id="c_advance" value="0" readonly></td></tr>
+                <tr><td class="label">පොහොර (Pohora) අඩු කිරීම්</td><td><input type="number" step="0.01" class="charge" id="c_pohora" value="0" readonly></td></tr>
+                <tr><td class="label">තේ පැකට් අඩු කිරීම්</td><td><input type="number" step="0.01" class="charge" id="c_rent" value="0" readonly></td></tr>
+                <tr><td class="label">ලිපි ද්‍රව්‍ය අඩු කිරීම්</td><td><input type="number" step="0.01" class="charge" id="c_misc" value="25.00" readonly></td></tr>
+                <tr><td class="label">වෙනත් අඩු කිරීම්</td><td><input type="number" step="0.01" class="charge" id="c_other" value="0.00" readonly></td></tr>
+                <tr><td class="label">මුලු වටිනාකම</td><td><input type="number" step="0.01" class="charge" id="c_totalAdj" value="0" readonly></td></tr>
                 </tbody>
             </table>
 
@@ -117,7 +119,7 @@
 
 </div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="JS/Notification.js"></script>
 <script src="JS/CustomerManagePage.js"></script>

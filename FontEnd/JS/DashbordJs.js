@@ -14,11 +14,18 @@ document.addEventListener("DOMContentLoaded", function () {
             adLink.style.display = "block";
             selIlt.style.display = "none";
             viewOrder.style.display = "block";
+            advanceLink.style.display = "none";
+            cmLink.style.display = "none";
+            cmLinkAdmin.style.display = "block";
+
         }
     } else if (role === "CUSTOMER"){
         if (reportLink) {
             reportLink.style.display = "block";
             viewOrder.style.display = "none";
+            advanceLink.style.display = "block";
+            cmLink.style.display = "block";
+            cmLinkAdmin.style.display = "none";
         }
     }
 
@@ -26,6 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (reportLink) {
             reportLink.style.display = "none";
             viewOrder.style.display = "none";
+            advanceLink.style.display = "none";
+            cmLink.style.display = "block";
+            cmLinkAdmin.style.display = "none";
 
         }
     }

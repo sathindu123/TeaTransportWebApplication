@@ -13,6 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "sell_product")
 public class SellProduct {
     @Id
     private String id = UUID.randomUUID().toString();

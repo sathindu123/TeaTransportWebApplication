@@ -144,6 +144,8 @@ async function countGenarate() {
 
         const counts = await response.json();
 
+
+
         document.getElementById("totalComplaints").textContent = counts[0];
         document.getElementById("pendingComplaints").textContent = counts[1];
         document.getElementById("inProgressComplaints").textContent = counts[2];
@@ -207,7 +209,7 @@ async function loadTable(page) {
 
         const data = await response.json();
 
-        console.log(data + "sasa");
+
 
 
         const table = document.getElementById("complaintsTableBody");
@@ -216,7 +218,7 @@ async function loadTable(page) {
         data.content.forEach(cmt => {
             let row = `
                 <tr>
-                    <td>${cmt.complainId}</td>
+                    <td>${cmt.complain_id}</td>
                     <td>${cmt.description}</td>
                     <td>${cmt.status}</td>
                     <td>${cmt.remarks}</td>

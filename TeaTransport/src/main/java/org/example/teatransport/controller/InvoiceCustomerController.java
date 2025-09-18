@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin// Allow your frontend origin
 @RestController
-@RequestMapping("/invoiceCustomer")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 
 public class InvoiceCustomerController {
@@ -28,6 +29,15 @@ public class InvoiceCustomerController {
     private final CustomerRipocitory customerRipocitory;
     private final InvoiceRipocitory invoiceRipocitory;
     private final CustomerService customerService;
+
+
+    @GetMapping("/loaddetailsCUS/{name}/{date}")
+    public Double[] getDetails(@PathVariable String name, @PathVariable String date){
+
+        return customerService.getDetails(name,date);
+
+
+    }
 
 
     @GetMapping("/me")

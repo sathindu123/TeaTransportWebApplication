@@ -1,5 +1,6 @@
 package org.example.teatransport.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,9 +17,11 @@ import java.util.UUID;
 @Builder
 public class Complaint {
     @Id
-    private String complainId;
-    @ManyToOne(fetch = FetchType.LAZY)  // Complaint එකකට එක user එකක්
-    @JoinColumn(name = "user_id")       // Complaint table එකේ foreign key column
+    @Column(name = "complain_id")
+    private String complain_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
     private String description;
     private String status;

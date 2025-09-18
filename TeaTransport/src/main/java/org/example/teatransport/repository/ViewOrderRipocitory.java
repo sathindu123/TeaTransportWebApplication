@@ -22,12 +22,16 @@ public interface ViewOrderRipocitory extends JpaRepository<SellProduct, String> 
     @Modifying
     @Transactional
     @Query("DELETE FROM SellProduct sp WHERE sp.order.oID = :id AND sp.productId = :productId")
-    int deleteBy(String id, String productId);
+    int deleteProductsByOrderId(@Param("id") String orderId, String productId);
+
+    @Query("SELECT COUNT(sp) FROM SellProduct sp WHERE sp.order.oID = :id")
+    int orderIDCount(@Param("id") String orderId);
+
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM OrderReqDetails sp WHERE sp.oID = :id")
-    int deleteByreq(String id);
+    @Query("DELETE FROM OrderReqDetails o WHERE o.oID = :id")
+    int deleteOrderById(@Param("id") String orderId);
 
     @Query("SELECT new map(sp.productId as productId, sp.count as count, " +
             "ord.custName as custName, ord.custAddress as custAddress, ord.custTel as custTel, ord.oID as oid) " +
@@ -35,5 +39,6 @@ public interface ViewOrderRipocitory extends JpaRepository<SellProduct, String> 
             "JOIN sp.order ord " +
             "WHERE ord.custName LIKE CONCAT('%', :query, '%')")
     Page<Map<String, Object>> fetchOrderUserName(@Param("query") String query, Pageable pageable);
+
 
 }

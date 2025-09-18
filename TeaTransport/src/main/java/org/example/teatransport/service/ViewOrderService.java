@@ -23,18 +23,18 @@ public class ViewOrderService {
     public void deleteOrder(String orderId, String productId) {
 
         try {
-            int deletedProducts = ripocitory.deleteBy(orderId, productId);
-            if (deletedProducts == 0) {
-                throw new RuntimeException("No product found to delete with given orderId and productId");
+            // 1. delete all products first
+            ripocitory.deleteProductsByOrderId(orderId,productId);
+
+            int count = ripocitory.orderIDCount(orderId);
+
+            if (count == 0) {
+                ripocitory.deleteOrderById(orderId);
             }
 
-            int deletedOrder = ripocitory.deleteByreq(orderId);
-            if (deletedOrder == 0) {
-                throw new RuntimeException("Order not found or could not be deleted");
-            }
+
         } catch (Exception e) {
-            e.printStackTrace(); // Full stack trace to see Hibernate SQL error
-            throw new RuntimeException("Failed to delete order due to database error", e);
+            System.out.println(e.getMessage() + "sathinsu");
         }
     }
 

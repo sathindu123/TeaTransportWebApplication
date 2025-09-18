@@ -6,6 +6,8 @@ import org.example.teatransport.entity.Complaint;
 import org.example.teatransport.entity.User;
 import org.example.teatransport.repository.ComplaintRipocitory;
 import org.example.teatransport.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -29,7 +31,7 @@ public class ComplaintService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Complaint com = Complaint.builder()
-                .complainId(complaint.getComplainId() != null ? complaint.getComplainId() : UUID.randomUUID().toString()) // assign ID
+                .complain_id(complaint.getComplainId() != null ? complaint.getComplainId() : UUID.randomUUID().toString()) // assign ID
                 .description(complaint.getDescription())
                 .status(complaint.getStatus())
                 .remarks(complaint.getRemarks())
@@ -49,11 +51,37 @@ public class ComplaintService {
 
         String userId = user.get().getId();
 
+        System.out.println(userId + " useID");
+
         array[0] = complaintRipocitory.getAllCount(userId);
         array[1] = complaintRipocitory.getPendingCount(userId);
         array[2] = complaintRipocitory.getInProgressCount(userId);
         array[3] = complaintRipocitory.getResolvedCount(userId);
-
+        System.out.println(array+ "Sasasasas");
+        System.out.println(array[0]);
         return array;
+
+
+    }
+
+    public Page<Complaint> findByUser(Optional<User> user, Pageable pageable) {
+        return complaintRipocitory.findByUserComplaint(user.get().getId(),pageable);
+    }
+
+    public Page<?> findAll(Pageable pageable) {
+        return complaintRipocitory.findAll(pageable);
+    }
+
+    public void updateComplaintADMIN(ComplaintDTO complaint) {
+        Complaint existingComplaint = complaintRipocitory.findById(complaint.getComplainId())
+                .orElseThrow(() -> new RuntimeException("Complaint not found"));
+
+
+        existingComplaint.setStatus(complaint.getStatus());
+        existingComplaint.setRemarks(complaint.getRemarks());
+
+        complaintRipocitory.save(existingComplaint);
+
+
     }
 }
