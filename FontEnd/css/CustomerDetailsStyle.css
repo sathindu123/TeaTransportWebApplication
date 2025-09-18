@@ -303,3 +303,52 @@ table.cal{
     .panel{ break-inside:avoid; }
     .header-card{ grid-template-columns:1fr 1fr; }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+span label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    min-width: 100px;       /* label width fixed */
+}
+
+span input {
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 120px;
+    background-color: #f9f9f9;
+    text-align: right;
+}
+
+
+
+span button {
+    margin-left: 10px;
+    padding: 6px 12px;
+    font-size: 22px;
+    height: 35px;
+    width: 80px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+

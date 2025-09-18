@@ -10,8 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (role === "ADMIN") {
         if (reportLink) {
-            reportLink.style.display = "block";
+            ADreportLink.style.display = "block";
             adLink.style.display = "block";
+            reportLink.style.display = "none";
             selIlt.style.display = "none";
             viewOrder.style.display = "block";
             advanceLink.style.display = "none";
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     } else if (role === "CUSTOMER"){
         if (reportLink) {
+            ADreportLink.style.display = "none";
             reportLink.style.display = "block";
             viewOrder.style.display = "none";
             advanceLink.style.display = "block";
@@ -31,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     else {
         if (reportLink) {
+            ADreportLink.style.display = "none";
             reportLink.style.display = "none";
             viewOrder.style.display = "none";
             advanceLink.style.display = "none";

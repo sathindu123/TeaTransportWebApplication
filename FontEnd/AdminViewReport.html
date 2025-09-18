@@ -19,7 +19,10 @@
     <!-- header / customer -->
     <div class="header-card">
         <div class="header-title">
-            <small><font size="3"> ලි.ප.අංකය M.T.2265</font></small><br><br>
+            <span><strong><label>Customer ID</label><input id="CUSTID" value="" >
+            <button type="button" class="btn btn-sm btn-outline-info" id="OKbtn">OK</button>
+            </strong></span>
+            <br><br>
             <div>නම- <span class="hint">DemoEstate</span></div>
             <div class="hint" id="headerMonth">Month</div>
         </div>
@@ -37,9 +40,9 @@
         </div>
 
         <div class="controls">
-<!--            <input id="custId" class="form-control form-control-sm" placeholder="Customer ID (C001)" style="width:140px">-->
-<!--            <input id="custName" class="form-control form-control-sm" placeholder="Customer Name" style="width:180px">-->
-<!--            <input id="custTel" class="form-control form-control-sm" placeholder="Tel (+94...)" style="width:160px">-->
+            <!--            <input id="custId" class="form-control form-control-sm" placeholder="Customer ID (C001)" style="width:140px">-->
+            <!--            <input id="custName" class="form-control form-control-sm" placeholder="Customer Name" style="width:180px">-->
+            <!--            <input id="custTel" class="form-control form-control-sm" placeholder="Tel (+94...)" style="width:160px">-->
 
             <select id="yearSel" class="form-select form-select-sm" style="width:110px">
                 <option value="">Year</option>
@@ -121,13 +124,10 @@
 
 </div>
 
-<div class="footer">
-    <p>If there is any mistake in this bill, you can make a complaint. We will review it and send you response. <a href="Compaint.html"> Submit Complaint</a></p>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="JS/Notification.js"></script>
-<script src="JS/CustomerManagePage.js"></script>
+<script src="JS/AdminReport.js"></script>
 </body>
 </html>
