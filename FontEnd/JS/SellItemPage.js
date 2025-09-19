@@ -1,6 +1,10 @@
 let cart = [];
 let total = 0;
 
+document.getElementById("logOuntbtn").addEventListener("click", (e) => {
+   window.location.replace("Dashbord.html")
+});
+
 function addToCart(item, price,productId) {
     console.log(productId);
     let existing = cart.find(c => c.productId === productId);

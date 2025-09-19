@@ -17,6 +17,11 @@ descc.addEventListener("input", async function() {
 });
 
 
+document.getElementById("logOuntbtn").addEventListener("click", () => {
+    window.location.replace("Dashbord.html");
+})
+
+
 //machn pandr 4yi ganak welawa.. update ekath ekapara weda karam kollo..
 
 document.getElementById("updatebtn").addEventListener("click", async (event) => {
