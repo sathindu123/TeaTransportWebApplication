@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     setupPagination();
 });
 
+document.getElementById("logOuntbtn").addEventListener("click", function () {
+    window.location.href = "Dashbord.html";
+});
+
 
 document.getElementById("searchButton").addEventListener("click", async function () {
     const queary = searchInput.value.trim();

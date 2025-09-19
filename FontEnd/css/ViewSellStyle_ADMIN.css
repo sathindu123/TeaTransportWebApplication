@@ -690,3 +690,17 @@ body::before {
     background: #f0f0f0;
 }
 
+
+
+.user-info {
+    display: flex;
+    align-items: center;   /* vertical center */
+    gap: 10px;             /* img සහ button අතර space */
+}
+
+.user-info img {
+    width: 50px;
+    height: 50px;
+}
+
+

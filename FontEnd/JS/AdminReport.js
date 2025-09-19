@@ -122,17 +122,17 @@ async function loadCustomerNames(id) {
             }
         });
 
-        if (!response.ok) {
-            throw new Error("Failed to fetch customer name");
-        }
+        const customerName = await response.text();
 
-        const customerName = await response.text(); // Backend එක String return කරන නිසා
-        console.log("Customer Name:", customerName);
+        if (!response.ok || customerName === "Customer ID Not Found") {
+            showNotification(customerName, "error");
+            return;
+        }
 
 
         const nameSpan = document.querySelector(".header-title div span.hint");
         if (nameSpan) {
-            nameSpan.textContent = customerName; // DemoEstate replace වෙනවා
+            nameSpan.textContent = customerName;
         }
 
     } catch (error) {

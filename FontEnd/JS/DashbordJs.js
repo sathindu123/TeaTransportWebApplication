@@ -46,9 +46,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+document.getElementById("logOuntbtn").addEventListener("click", function () {
+    window.location.replace("http://localhost:63343/SellItempage.html/Login.html");
+})
 
 
 // Email sender
+
 
 document.querySelector("button").addEventListener("click", async () => {
     const name = document.querySelector(".name input").value;

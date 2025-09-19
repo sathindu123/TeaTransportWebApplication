@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin// Allow your frontend origin
 @RestController
@@ -35,7 +34,6 @@ public class InvoiceCustomerController {
     public Double[] getDetails(@PathVariable String name, @PathVariable String date){
 
         return customerService.getDetails(name,date);
-
 
     }
 
@@ -80,8 +78,19 @@ public class InvoiceCustomerController {
 
        return ResponseEntity.ok(dto);
 
-
    }
+
+    @GetMapping("/LoadName/{name}")
+    public String getCudtID(@PathVariable String name){
+        String id  = customerRipocitory.findByNames(name);
+
+        if (id == null) {
+            return "Customer ID Not Found";
+        }
+        return id;
+    }
+
+
 
 //   @GetMapping("/other")
 //   public ResponseEntity<List<Double>> getOthers(@RequestBody TeaBagInventoryDTO teaBagInventoryDTO) {

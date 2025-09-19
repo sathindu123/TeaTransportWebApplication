@@ -2,7 +2,7 @@ let currentPage = 0;   // use camelCase everywhere
 let pageSize = 5;
 
 document.getElementById("logOuntbtn").addEventListener("click", () => {
-    window.location.replace("Login.html");
+    window.location.replace("Dashbord.html");
 
 
 });

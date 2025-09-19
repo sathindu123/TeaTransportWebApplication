@@ -17,6 +17,10 @@ public interface CustomerRipocitory extends JpaRepository<Customer,String> {
     @Query("select c.id from Customer c where c.name = :name")
     String findByIds(String name);
 
+    @Query("select c.name from Customer c where c.id = :name")
+    String findByNames(String name);
+
+
 //    @Query("SELECT COALESCE(SUM(a.monthPrice), 0) FROM Advance a WHERE a.custId = :custId AND a.month = :month")
 //    Double getadvance(@Param("custId") String custId, @Param("month") String month);
 
