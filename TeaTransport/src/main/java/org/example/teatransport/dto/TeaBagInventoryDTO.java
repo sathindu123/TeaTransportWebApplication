@@ -1,13 +1,16 @@
 package org.example.teatransport.dto;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
 import lombok.Data;
+
+import java.time.LocalDate;
 
 @Data
 public class TeaBagInventoryDTO {
-    private String id;
-    private int qty;
-    private String name;
-    private String date;
-    private int goldLeaf;
-    private int goodLeaf;
+
+    private String custId;
+    private LocalDate date;
+    private int goldLeafAmount;
+    private int goodLeafAmount;
 }

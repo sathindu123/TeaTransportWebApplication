@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
             advanceLink.style.display = "none";
             cmLink.style.display = "none";
             cmLinkAdmin.style.display = "block";
+            EditreportLink.style.display = "block";
+            ContactLIN.style.display = "none";
 
         }
     } else if (role === "CUSTOMER"){
@@ -28,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
             advanceLink.style.display = "block";
             cmLink.style.display = "block";
             cmLinkAdmin.style.display = "none";
+            EditreportLink.style.display = "none";
+
         }
     }
 
@@ -39,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
             advanceLink.style.display = "none";
             cmLink.style.display = "block";
             cmLinkAdmin.style.display = "none";
+            EditreportLink.style.display = "none";
 
         }
     }

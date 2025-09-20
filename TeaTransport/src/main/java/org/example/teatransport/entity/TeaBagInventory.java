@@ -13,11 +13,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@IdClass(TeaBagInventoryId.class)
 @Table(name = "teabaginventory")
 public class TeaBagInventory {
     @Id
     @Column(name = "custId")
     private String custId;
+    @Id
     private LocalDate date;
     @Column(name = "goldLeafAmount")
     private int goldLeafAmount;

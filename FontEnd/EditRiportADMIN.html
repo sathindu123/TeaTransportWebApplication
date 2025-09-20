@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/Notification.css" rel="stylesheet">
+    <link href="css/EditOthrsCSS.css" rel="stylesheet">
+</head>
+
+<body>
+
+<form method="POST" action="" class="complaint-form">
+    <div class="form-grid">
+        <div class="form-group">
+            <label for="complaintId" class="form-label">
+                <i class="fas fa-hashtag"></i>
+                Customer ID
+            </label>
+            <input type="text" id="complaintId" name="complaintId" class="form-input" value="" >
+        </div>
+
+        <div class="form-group">
+            <label id="name" for="complaintId" class="form-label">
+                <i class="fas fa-hashtag"></i>
+                Name
+            </label>
+            <input type="text" id="CustomerName" name="complaintId" class="form-input" value="Customer Name" readonly >
+        </div>
+
+        <div class="form-group">
+            <label for="complaintId" class="form-label">
+                <i class="fas fa-hashtag"></i>
+                Date
+            </label>
+            <input type="text" id="Date" name="complaintId" class="form-input" value="YYYY-MM-DD">
+        </div>
+
+        <button type="button" name="action" id="okbtn" value="save" class="btn btn-primary">
+            <i class="fas fa-save"></i>
+            OK
+        </button>
+    </div>
+</form>
+
+
+<!-- RIGHT: charges / adjustments -->
+<div class="panel">
+    <table class="charges" id="charges">
+        <thead>
+        <tr><th class="label">Type of tea leaf</th><th>Kg</th></tr>
+        </thead>
+        <tbody>
+
+        <tr><td class="label">Good Leaf</td><td><input type="number" step="0.01" class="charge" id="c_disc" value="0"></td></tr>
+        <tr><td class="label">Gold Leaf</td><td><input type="number" step="0.01" class="charge" id="c_must" value="0" ></td></tr>
+
+
+    </table>
+
+    <div class="form-actions">
+        <button type="button" name="action" id="submitbtn" value="save" class="btn btn-primary">
+            <i class="fas fa-save"></i>
+            Save
+        </button>
+        <button id="deletebtn" type="submit" name="action" value="delete" class="btn btn-danger">
+            <i class="fas fa-trash"></i>
+            Delete
+        </button>
+    </div>
+
+</div>
+
+
+
+<!-- RIGHT: charges / adjustments -->
+<div class="panel">
+    <h3>Advance</h3>
+    <div class="fertilizer-section">
+        <label for="FID" class="form-label"> Total </label>
+        <input type="" step="0.01" class="charge" id="AID" value="0">
+
+        <label for="wrikF" class="form-label">Amount of installments</label>
+        <input type="" step="0.01" class="charge" id="wrikA" value="0">
+    </div>
+    <div class="form-actions">
+        <button type="submit" name="action" id="Abtn" value="save" class="btn btn-primary">
+            <i class="fas fa-save"></i>
+            Save
+        </button>
+        <button id="Adeletebtn" type="submit" name="action" value="delete" class="btn btn-danger">
+            <i class="fas fa-trash"></i>
+            Delete
+        </button>
+    </div>
+
+</div>
+
+    <div class="panel">
+    <h3>Fertilizer</h3>
+    <div class="fertilizer-section">
+    <label for="FID" class="form-label"> Product ID </label>
+    <input type="" step="0.01" class="charge" id="PIDF" value="0">
+
+    <label for="FID" class="form-label"> Count </label>
+    <input type="" step="0.01" class="charge" id="CIDF" value="0">
+
+    <label for="FID" class="form-label"> Total </label>
+    <input type="" step="0.01" class="charge" id="FID" value="0">
+
+    <label for="wrikF" class="form-label">Amount of installments</label>
+    <input type="" step="0.01" class="charge" id="wrikF" value="0">
+    </div>
+    <div class="form-actions">
+        <button type="submit" name="action" id="Fbtn" value="save" class="btn btn-primary">
+            <i class="fas fa-save"></i>
+            Save
+        </button>
+        <button id="Fddeletebtn" type="submit" name="action" value="delete" class="btn btn-danger">
+            <i class="fas fa-trash"></i>
+            Delete
+        </button>
+    </div>
+    </div>
+<div class="panel">
+
+    <h3>Tea Packet</h3>
+    <div class="fertilizer-section">
+    <label for="FID" class="form-label"> Product ID </label>
+    <input type="" step="0.01" class="charge" id="PIDT" value="0">
+
+    <label for="FID" class="form-label"> Count </label>
+    <input type="" step="0.01" class="charge" id="CIDT" value="0">
+
+    <label for="FID" class="form-label"> Total </label>
+    <input type="" step="0.01" class="charge" id="TID" value="0">
+
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" name="action" id="Tbtn" value="save" class="btn btn-primary">
+            <i class="fas fa-save"></i>
+            Save
+        </button>
+        <button id="Tdeletebtn" type="submit" name="action" value="delete" class="btn btn-danger">
+            <i class="fas fa-trash"></i>
+            Delete
+        </button>
+    </div>
+
+</div>
+
+<div class="panel">
+    <h3>Othrs</h3>
+    <div class="fertilizer-section">
+    <label for="FID" class="form-label"> Product ID </label>
+    <input type="" step="0.01" class="charge" id="PIDO" value="0">
+    <label for="FID" class="form-label"> Count </label>
+    <input type="" step="0.01" class="charge" id="CIDO" value="0">
+    <label for="FID" class="form-label"> Total </label>
+    <input type="" step="0.01" class="charge" id="OID" value="0">
+
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" name="action" id="Obtn" value="save" class="btn btn-primary">
+            <i class="fas fa-save"></i>
+            Save
+        </button>
+        <button id="Odeletebtn" type="submit" name="action" value="delete" class="btn btn-danger">
+            <i class="fas fa-trash"></i>
+            Delete
+        </button>
+    </div>
+
+    <br>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="JS/Notification.js"></script>
+<script src="JS/EditReportPage.js"></script>
+</body>
+</html>

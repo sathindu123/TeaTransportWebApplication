@@ -71,7 +71,7 @@ public class InvoiceCustomerController {
 
    @GetMapping("/date")
     public ResponseEntity<List<Integer>> getDate(@RequestBody TeaBagInventoryDTO teaBagInventoryDTO) {
-        date = teaBagInventoryDTO.getDate();
+        date = String.valueOf(teaBagInventoryDTO.getDate());
 
        List<Integer> dto  = new ArrayList<>();
        dto = customerService.findByDateAndCustId(date,custID);
