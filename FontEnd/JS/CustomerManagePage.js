@@ -196,11 +196,13 @@ async function loadDetails(date) {
 
         document.getElementById("c_advance").value = data[0];
         document.getElementById("c_pohora").value = data[3];
-        document.getElementById("c_rent").value = data[1];
-        document.getElementById("c_other").value = data[2];
+        document.getElementById("c_rent").value = data[2];
+        document.getElementById("c_other").value = data[1];
         document.getElementById("c_fine").value = data[4];
         document.getElementById("l1").textContent = data[5];
         document.getElementById("l2").textContent = data[6];
+        document.getElementById("nextPohora").value = data[7];
+        document.getElementById("nextadvance").value = data[8];
 
         allGiveCount = (data[0]+data[1]+data[2]+data[3]+data[4]+25);
 

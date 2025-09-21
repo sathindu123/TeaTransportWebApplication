@@ -245,32 +245,45 @@ body {
     display: block;
 }
 
-/* Table styles */
-.table-container {
-    overflow-x: auto;
-}
-
 .complaints-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
+    background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.complaints-table th, .complaints-table td {
-    padding: 1rem;
+.complaints-table th {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    color: var(--text-primary);
+    font-weight: 700;
+    padding: 1.25rem;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid var(--border-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.complaints-table th {
-    background-color: #2ecc71;
-    color: #fff;
+.complaints-table td {
+    padding: 1.25rem;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: top;
+}
+
+.complaints-table tbody tr {
+    transition: all 0.2s ease;
     cursor: pointer;
 }
 
-.complaints-table th:hover {
-    background-color: #2980b9;
+.complaints-table tbody tr:hover {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    transform: scale(1.01);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.complaints-table tbody tr.selected {
+    background: linear-gradient(135deg, #e0f2fe, #b3e5fc) !important;
+    box-shadow: 0 4px 12px rgba(3, 169, 244, 0.3);
 }
 
 .sort-icon::after {

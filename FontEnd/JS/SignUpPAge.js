@@ -210,3 +210,25 @@ verifyOtpBtn.addEventListener("click", function(){
 document.querySelector(".btn-login").addEventListener("click", function(){
     window.location.href = "login.html";
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const roleDropdown = document.getElementById("roleDropdown");
+    const billBookSection = document.getElementById("billBookSection");
+    const hiddenRole = document.getElementById("hiddenRole");
+    const selectedRoleLabel = document.getElementById("selectedRole");
+
+    roleDropdown.addEventListener("change", function () {
+        const selectedValue = roleDropdown.value;
+
+        // Hidden input & label update කරන්න
+        hiddenRole.value = selectedValue;
+        selectedRoleLabel.textContent = "Selected Role: " + selectedValue;
+
+        // CUSTOMER role නම් section එක show කරන්න
+        if (selectedValue === "CUSTOMER") {
+            billBookSection.style.display = "block";
+        } else {
+            billBookSection.style.display = "none";
+        }
+    });
+});

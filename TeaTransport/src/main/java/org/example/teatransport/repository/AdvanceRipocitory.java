@@ -20,4 +20,9 @@ public interface AdvanceRipocitory extends JpaRepository<Advance, String> {
     @Modifying
     @Query("delete from Advance a where a.custId = :id AND a.date = :date")
     int deleteAdvance(String id, LocalDate date);
+
+    @Query("SELECT SUM(a.monthPrice) FROM Advance a " +
+            "WHERE a.custId = :custId " +
+            "AND (FUNCTION('STR_TO_DATE', a.month, '%M%Y') > FUNCTION('STR_TO_DATE', :date, '%M%Y'))")
+    Double getnextadvance(String custId, String date);
 }

@@ -84,7 +84,7 @@ public class CustomerService {
         }
 
 
-        Double[] array = new Double[7];
+        Double[] array = new Double[9];
 
         try {
             array[0] = advanceRipocitory.getAdvance(custId,date);
@@ -94,6 +94,8 @@ public class CustomerService {
             array[4] = customerhigapriceRepocitory.gethiga(custId,date);
             array[5] = monthlyRateRipocitory.getgoldRate(newdate);
             array[6] = monthlyRateRipocitory.getgoodRate(newdate);
+            array[7] = pohorapurchasecustomerRepocitory.getnextpohora(custId,date);
+            array[8] = advanceRipocitory.getnextadvance(custId,date);
 
 
         }catch (Exception e) {
