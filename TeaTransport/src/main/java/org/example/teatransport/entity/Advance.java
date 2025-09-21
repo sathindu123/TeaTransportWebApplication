@@ -1,10 +1,7 @@
 package org.example.teatransport.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,11 +14,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@IdClass(AdvanceID.class)
 public class Advance {
     @Id
     @Column(name = "custId")
     private String custId ;
     private LocalDate date ;
+    @Id
     private String  month ;
     private double price ;
     @Column(name = "monthPrice")

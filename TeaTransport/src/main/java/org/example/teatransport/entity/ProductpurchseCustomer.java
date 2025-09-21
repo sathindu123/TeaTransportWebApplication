@@ -1,9 +1,6 @@
 package org.example.teatransport.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,11 +14,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@IdClass(ProductPurasheID.class)
 public class ProductpurchseCustomer {
     @Id
     @Column(name = "custId")
     private String custId;
     private LocalDate date;
+    @Id
     @Column(name = "productId")
     private String  productId;
     private int quntity;

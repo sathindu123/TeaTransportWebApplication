@@ -281,6 +281,7 @@ async function loadDetails(date) {
                 else {
                     const tt = total-allGiveCount;
                     document.getElementById("sumCharges").textContent = tt;
+                    sumCharges.style.color = "blue"
                 }
 
 

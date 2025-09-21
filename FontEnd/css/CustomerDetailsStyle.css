@@ -350,5 +350,27 @@ span button {
     cursor: pointer;
     transition: background 0.3s ease;
 }
+#Label22,
+#Label23{
+    font-size: 18px;
+    font-weight: 600;
+}
 
+#nextPohora{
+    width:30%;
+    gap: 36px;
+    margin-left: 10%;
+    font-size: 18px;
+    font-weight: 600;
+    color: blue;
 
+}
+#nextadvance{
+    width:30%;
+    gap: 16px;
+    margin-left: 8%;
+    font-size: 18px;
+    font-weight: 600;
+    color: blue;
+
+}
